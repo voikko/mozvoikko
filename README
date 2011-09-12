@@ -1,0 +1,44 @@
+This is test version of mozvoikko2, an extension for Mozilla programs
+for using Finnish Language spell-checker Voikko
+
+Supported versions are:
+=======================
+
+-  Mozilla Firefox 4.0 or above
+-  Mozilla Thunderbird 5.0 or above
+-  Mozilla SeaMonkey 2.2 or above
+
+Supported targets:
+==================
+-  32-bit Windows (WINNT_x86-msvc)
+-  32-bit Linux (Linux_ix86-gcc3)
+-  64-bit Linux (Linux_x86_64-gcc3)
+-  32- and 64-bit OS X 10.5 and 10.6 (Darwin_x86-gcc3)
+
+Binary packages for targets mentioned above are included in the extension package.
+Also suomi-malaga data are included. Extension works however with system installations
+of these packages (libvoikko and suomi-malaga) if the files are not found inside
+the extension package.
+
+movoikko2 itself is written completely in JavaScript and does not contain
+any binary components.
+
+One can include libvoikko shared libraries and suomi-malaga files into an extension.
+For that one must put these files in the subdirectories of directory voikko as
+shown below:
+
+[andris@ap mozvoikko2]$ find voikko -type f | sort
+voikko/2/mor-standard/voikko-fi_FI.all_l
+voikko/2/mor-standard/voikko-fi_FI.lex_l
+voikko/2/mor-standard/voikko-fi_FI.mor_l
+voikko/2/mor-standard/voikko-fi_FI.pro
+voikko/2/mor-standard/voikko-fi_FI.sym_l
+voikko/Darwin_x86_64-gcc3/libvoikko.1.dylib
+voikko/Darwin_x86-gcc3/libvoikko.1.dylib
+voikko/Linux_x86_64-gcc3/libvoikko.so.1
+voikko/Linux_x86-gcc3/libvoikko.so.1
+voikko/README
+voikko/WINNT_x86-msvc/libvoikko-1.dll
+
+
+Andris Pavenis <andris.pavenis@iki.fi>
