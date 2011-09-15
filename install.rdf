@@ -4,9 +4,9 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
  <Description about="urn:mozilla:install-manifest">
-    <em:id>{e0f83f86-cb2b-11e0-a51e-00508d9f364f}</em:id>
+    <em:id>{b676e3ff-cda7-4e0c-b2b8-74e4bb40a67a}</em:id>
     <em:name>Mozilla-laajennus Voikon käyttöön (v2)</em:name>
-    <em:version>2.0a1</em:version>
+    <em:version>2.0</em:version>
     <em:description>Mozilla-laajennus Voikko-oikoluvun käyttöön</em:description>
     <em:creator>Andris.Pavenis &lt;andris.pavenis@iki.fi&gt;</em:creator>
     <em:contributor>Marko Wallin &lt;marko.wallin@iki.fi&gt;</em:contributor>
