@@ -1,5 +1,5 @@
 
-VERSION=2.0
+VERSION=$(shell grep -E -o '<em.version>(.*)</em.version>' install.rdf | sed -e 's/<[a-z:/]*>//g')
 
 XPI_FILES=README COPYING install.rdf chrome.manifest components/MozVoikko2.js
 SOURCE_FILES=$(XPI_FILES) Makefile
@@ -23,5 +23,5 @@ mozvoikko2:
 clean:
 	rm -f mozvoikko-$(VERSION).tar.gz mozvoikko2.xpi
 	rm -f $(patsubst %,mozvoikko-$(VERSION)/%, $(sort $(SOURCE_FILES)))
-	test -d mozvoikko-$(VERSION)/components && rmdir mozvoikko-$(VERSION)/components
-	test -d mozvoikko-$(VERSION) && rmdir mozvoikko-$(VERSION)
+	test ! -d mozvoikko-$(VERSION)/components || rmdir mozvoikko-$(VERSION)/components
+	test ! -d mozvoikko-$(VERSION) || rmdir mozvoikko-$(VERSION)
