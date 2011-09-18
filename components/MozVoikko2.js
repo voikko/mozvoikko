@@ -24,9 +24,6 @@ const CLASS_ID = Components.ID("89630d4c-c64d-11e0-83d8-00508d9f364f");
 const CLASS_NAME = "Finnish language spell-check";
 const CONTRACT_ID = "@mozilla.org/mozvoikko2;1";
 
-var aConsoleService = Components.classes["@mozilla.org/consoleservice;1"].
-    getService(Components.interfaces.nsIConsoleService);
-
 
 function LibVoikko()
 {
