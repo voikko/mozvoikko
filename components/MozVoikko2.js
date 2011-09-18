@@ -24,7 +24,6 @@ const CLASS_ID = Components.ID("89630d4c-c64d-11e0-83d8-00508d9f364f");
 const CLASS_NAME = "Finnish language spell-check";
 const CONTRACT_ID = "@mozilla.org/mozvoikko2;1";
 
-
 function LibVoikko()
 {
 }
@@ -172,6 +171,9 @@ LibVoikko.prototype = {
     }
 };
 
+var aConsoleService = Components.classes["@mozilla.org/consoleservice;1"].
+    getService(Components.interfaces.nsIConsoleService);
+
 var libvoikko = new LibVoikko;
 libvoikko.init();
 
@@ -312,10 +314,6 @@ MozVoikko2.prototype = {
         libvoikko.fn_voikko_free_cstr_array(tmp);
     }   
 }
-
-
-var aConsoleService = Components.classes["@mozilla.org/consoleservice;1"].
-    getService(Components.interfaces.nsIConsoleService);
 
 const voikko_handle_t = new ctypes.voidptr_t;
 
