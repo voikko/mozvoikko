@@ -1,0 +1,14 @@
+2011-09-18 Andris Pavenis <andris.pavenis@iki.fi>
+	* Fix initialization of variable aConsoleService (it was initialized too late).
+	* Update lower supported versions (early js-ctypes version before gecko-2.0 is incompatible).
+	* Remove duplicate definition of the variable
+
+2011-09-18 Harri Pitkänen <hatapitk@iki.fi>
+	* Add target to create source tar.gz for Linux distributors
+
+2011-09-15 Andris Pavenis <andris.pavenis@iki.fi>
+	* Use same em:id as the old version of Mozvoikko
+	* Change version to 2.0
+
+2011-08-27 Andris Pavenis <andris.pavenis@iki.fi>
+	* Initial release
