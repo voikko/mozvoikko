@@ -1,3 +1,7 @@
+2011-09-22 Harri Pitkänen <hatapitk@iki.fi>
+	* Do not check strings shorter than 2 characters. Firefox will under some
+	  circumstances consider single dots as words and Voikko will reject those.
+
 2011-09-18 Andris Pavenis <andris.pavenis@iki.fi>
 	* Fix initialization of variable aConsoleService (it was initialized too late).
 	* Update lower supported versions (early js-ctypes version before gecko-2.0 is incompatible).

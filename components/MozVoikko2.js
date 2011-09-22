@@ -280,6 +280,10 @@ MozVoikko2.prototype = {
 
     check : function(word)
     {
+        if (word.length < 2)
+        {
+            return true;
+        }
         var result = libvoikko.fn_voikko_spell_cstr(this.voikko_handle.handle, word);
 
         if (result == 0 && this.mPersonalDictionary)
