@@ -24,6 +24,11 @@ const CLASS_ID = Components.ID("89630d4c-c64d-11e0-83d8-00508d9f364f");
 const CLASS_NAME = "Finnish language spell-check";
 const CONTRACT_ID = "@mozilla.org/mozvoikko2;1";
 
+const VOIKKO_OPT_IGNORE_DOT = 0;
+const VOIKKO_OPT_IGNORE_NUMBERS = 1;
+const VOIKKO_OPT_IGNORE_UPPERCASE = 3;
+const VOIKKO_OPT_ACCEPT_MISSING_HYPHENS = 12;
+
 function LibVoikko()
 {
 }
@@ -40,6 +45,7 @@ LibVoikko.prototype = {
     fn_voikko_spell_cstr: null,
     fn_voikko_suggest_cstr: null,
     fn_voikko_free_cstr_array: null,
+    fn_voikko_set_boolean_option: null,
 
     init : function()
     {
@@ -161,6 +167,17 @@ LibVoikko.prototype = {
             this.call_abi,
             ctypes.void_t,
             ctypes.char.ptr.array(50).ptr);
+
+        //
+        // int voikkoSetBooleanOption(struct VoikkoHandle * handle, int option, int value);
+        //
+        this.fn_voikko_set_boolean_option = this.libvoikko.declare(
+            "voikkoSetBooleanOption",
+            this.call_abi,
+            ctypes.int,
+            ctypes.voidptr_t,
+            ctypes.int,
+            ctypes.int);
     },
 
     finalize : function()
@@ -174,12 +191,22 @@ LibVoikko.prototype = {
 var aConsoleService = Components.classes["@mozilla.org/consoleservice;1"].
     getService(Components.interfaces.nsIConsoleService);
 
-var libvoikko = new LibVoikko;
-libvoikko.init();
+
+try
+{
+    var libvoikko = new LibVoikko;
+    libvoikko.init();
+}
+catch (err)
+{
+    Components.utils.reportError(err);
+    throw err;
+}
 
 function VoikkoHandle(libvoikko)
 {
 }
+
 
 VoikkoHandle.prototype = {
     handle: null,
@@ -203,6 +230,11 @@ VoikkoHandle.prototype = {
             message_ptr,
             "fi_FI",
             data_loc);
+
+        this.libvoikko.fn_voikko_set_boolean_option(this.handle, VOIKKO_OPT_IGNORE_DOT, 1);
+        this.libvoikko.fn_voikko_set_boolean_option(this.handle, VOIKKO_OPT_IGNORE_NUMBERS, 1);
+        this.libvoikko.fn_voikko_set_boolean_option(this.handle, VOIKKO_OPT_IGNORE_UPPERCASE, 1);
+        this.libvoikko.fn_voikko_set_boolean_option(this.handle, VOIKKO_OPT_ACCEPT_MISSING_HYPHENS, 1);
     },
 
     finalize : function()
@@ -218,8 +250,16 @@ VoikkoHandle.prototype = {
 
 function MozVoikko2()
 {
-    this.voikko_handle = new VoikkoHandle;
-    this.voikko_handle.open(libvoikko);
+    try
+    {
+        this.voikko_handle = new VoikkoHandle;
+        this.voikko_handle.open(libvoikko);
+    }
+    catch (err)
+    {
+        Components.utils.reportError(err);
+        throw err;
+    }
 }
 
 MozVoikko2.prototype = {
@@ -319,7 +359,6 @@ MozVoikko2.prototype = {
     }   
 }
 
-const voikko_handle_t = new ctypes.voidptr_t;
 
 if (XPCOMUtils.generateNSGetFactory)
     var NSGetFactory = XPCOMUtils.generateNSGetFactory([MozVoikko2]);
