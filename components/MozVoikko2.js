@@ -280,6 +280,10 @@ MozVoikko2.prototype = {
 
     set dictionary(dict)
     {
+        if (dict != "fi_FI")
+        {
+            throw "mozvoikko2: dictionary '" + dict + "' is not found";
+        }
     },
 
     get providesPersonalDictionary()
