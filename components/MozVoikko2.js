@@ -282,7 +282,7 @@ MozVoikko2.prototype = {
     {
         if (dict != "fi_FI")
         {
-            throw "mozvoikko2: dictionary '" + dict + "' is not found";
+            throw "mozvoikko2: dictionary '" + dict + "' is not supported by this component (but may be supported by others)";
         }
     },
 

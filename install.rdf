@@ -13,7 +13,7 @@
     <em:contributor>http://voikko.sourceforge.net - Voikon kehitys</em:contributor>
 
     <em:unpack>true</em:unpack>
-    <em:homepageURL>http://www.mozilla.fi/wiki/Suomen_kielen_oikoluku</em:homepageURL>
+    <em:homepageURL>https://sourceforge.net/apps/trac/voikko/wiki/mozvoikko</em:homepageURL>
     <em:targetPlatform>Linux_x86-gcc3</em:targetPlatform>
     <em:targetPlatform>Linux_x86_64-gcc3</em:targetPlatform>
     <em:targetPlatform>Darwin_x86-gcc3</em:targetPlatform>
