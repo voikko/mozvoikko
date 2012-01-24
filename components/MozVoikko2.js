@@ -68,7 +68,7 @@ LibVoikko.prototype = {
             lib_name = "libvoikko-1.dll";
             this.call_abi = ctypes.winapi_abi;
         }
-        else if (abi == "Darwin_x86_64-gcc3" || abi == "Darwin_x86-gcc3")
+        else if (abi == "Darwin_x86_64-gcc3" || abi == "Darwin_x86-gcc3" || abi == "Darwin_ppc-gcc3")
         {
             lib_name = "libvoikko.1.dylib";
         }

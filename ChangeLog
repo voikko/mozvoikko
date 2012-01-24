@@ -1,3 +1,6 @@
+2012-01-22 Marko Wallin <marko.wallin@iki.fi>
+	* Support TenFourFox on PPC Mac OS X.
+
 2011-12-29 Andris Pavenis <andris.pavenis@iki.fi>
 	* Throw an exception when specified dictionary is not 'fi_FI'
 
