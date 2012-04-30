@@ -63,7 +63,7 @@ LibVoikko.prototype = {
         {
             lib_name = "libvoikko.so.1";
         }
-        else if (abi == "WINNT_x86-msvc")
+        else if (abi == "WINNT_x86-msvc" || abi == "WINNT_x86_64-msvc")
         {
             lib_name = "libvoikko-1.dll";
             this.call_abi = ctypes.winapi_abi;

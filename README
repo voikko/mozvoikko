@@ -11,9 +11,12 @@ Supported versions are:
 Supported targets:
 ==================
 -  32-bit Windows (WINNT_x86-msvc)
+-  64-bit Windows (WINNT_x86_64-msvc)
 -  32-bit Linux (Linux_ix86-gcc3)
 -  64-bit Linux (Linux_x86_64-gcc3)
--  32- and 64-bit OS X 10.5 and 10.6 (Darwin_x86-gcc3)
+-  32-bit Mac OS X (Darwin_x86-gcc3)
+-  64-bit Mac OS X (Darwin_x86_64-gcc3)
+-  32-bit Mac OS X (Darwin_ppc-gcc3)
 
 Binary packages for targets mentioned above are included in the extension package.
 Also suomi-malaga data are included. Extension works however with system installations
@@ -27,7 +30,7 @@ One can include libvoikko shared libraries and suomi-malaga files into an extens
 For that one must put these files in the subdirectories of directory voikko as
 shown below:
 
-[andris@ap mozvoikko2]$ find voikko -type f | sort
+$ find voikko -type f | sort
 voikko/2/mor-standard/voikko-fi_FI.all_l
 voikko/2/mor-standard/voikko-fi_FI.lex_l
 voikko/2/mor-standard/voikko-fi_FI.mor_l
@@ -39,6 +42,14 @@ voikko/Linux_x86_64-gcc3/libvoikko.so.1
 voikko/Linux_x86-gcc3/libvoikko.so.1
 voikko/README
 voikko/WINNT_x86-msvc/libvoikko-1.dll
+voikko/WINNT_x86_64-msvc/libvoikko-1.dll
 
+On PPC Mac OS X:
+$ find voikko -type f | sort
+voikko/2/mor-standard/voikko-fi_FI.lex_b
+voikko/2/mor-standard/voikko-fi_FI.mor_b
+voikko/2/mor-standard/voikko-fi_FI.pro
+voikko/2/mor-standard/voikko-fi_FI.sym_b
+voikko/Darwin_ppc-gcc3/libvoikko.1.dylib
 
 Andris Pavenis <andris.pavenis@iki.fi>

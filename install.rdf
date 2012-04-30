@@ -8,24 +8,34 @@
     <em:name>Mozilla-laajennus Voikon käyttöön</em:name>
     <em:version>2.0.1</em:version>
     <em:description>Mozilla-laajennus Voikko-oikoluvun käyttöön</em:description>
+    <em:localized>
+      <Description>
+        <em:locale>en-US</em:locale>
+        <em:name>Finnish spellchecker</em:name>
+        <em:description>Finnish open source Voikko-spellchecker for Mozilla and needed libraries.</em:description>
+      </Description>
+    </em:localized>
     <em:creator>Andris.Pavenis &lt;andris.pavenis@iki.fi&gt;</em:creator>
     <em:contributor>Marko Wallin &lt;marko.wallin@iki.fi&gt;</em:contributor>
     <em:contributor>http://voikko.sourceforge.net - Voikon kehitys</em:contributor>
 
     <em:unpack>true</em:unpack>
+    <em:type>2</em:type>
     <em:homepageURL>https://sourceforge.net/apps/trac/voikko/wiki/mozvoikko</em:homepageURL>
     <em:targetPlatform>Linux_x86-gcc3</em:targetPlatform>
     <em:targetPlatform>Linux_x86_64-gcc3</em:targetPlatform>
     <em:targetPlatform>Darwin_x86-gcc3</em:targetPlatform>
     <em:targetPlatform>Darwin_x86_64-gcc3</em:targetPlatform>
+    <em:targetPlatform>Darwin_ppc-gcc3</em:targetPlatform>
     <em:targetPlatform>WINNT_x86-msvc</em:targetPlatform>
+    <em:targetPlatform>WINNT_x86_64-msvc</em:targetPlatform>
      
     <em:targetApplication>
         <!-- Mozilla Firefox -->
 	<Description>
 	    <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 	    <em:minVersion>4.0</em:minVersion>
-	    <em:maxVersion>12.0a1</em:maxVersion>
+	    <em:maxVersion>14.0a1</em:maxVersion>
 	</Description>
     </em:targetApplication>
 	
@@ -34,7 +44,7 @@
 	<Description>
     	    <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
     	    <em:minVersion>5.0</em:minVersion>
-    	    <em:maxVersion>12.0a1</em:maxVersion>
+    	    <em:maxVersion>14.0a1</em:maxVersion>
     	</Description>
     </em:targetApplication>
     
@@ -43,7 +53,7 @@
 	<Description>
 	    <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
 	    <em:minVersion>2.2</em:minVersion>
-	    <em:maxVersion>2.9a1</em:maxVersion>
+	    <em:maxVersion>2.11a1</em:maxVersion>
 	</Description>
     </em:targetApplication>
 
