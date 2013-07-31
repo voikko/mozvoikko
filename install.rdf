@@ -17,11 +17,11 @@
     </em:localized>
     <em:creator>Andris.Pavenis &lt;andris.pavenis@iki.fi&gt;</em:creator>
     <em:contributor>Marko Wallin &lt;marko.wallin@iki.fi&gt;</em:contributor>
-    <em:contributor>http://voikko.sourceforge.net - Voikon kehitys</em:contributor>
+    <em:contributor>http://voikko.puimula.org - Voikon kehitys</em:contributor>
 
     <em:unpack>true</em:unpack>
     <em:type>2</em:type>
-    <em:homepageURL>https://sourceforge.net/apps/trac/voikko/wiki/mozvoikko</em:homepageURL>
+    <em:homepageURL>https://github.com/voikko/mozvoikko/wiki</em:homepageURL>
     <em:targetPlatform>Linux_x86-gcc3</em:targetPlatform>
     <em:targetPlatform>Linux_x86_64-gcc3</em:targetPlatform>
     <em:targetPlatform>Darwin_x86-gcc3</em:targetPlatform>
