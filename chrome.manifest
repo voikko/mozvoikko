@@ -1,3 +1,4 @@
 component {89630d4c-c64d-11e0-83d8-00508d9f364f} components/MozVoikko2.js
 contract @mozilla.fi/mozvoikko2;1 {89630d4c-c64d-11e0-83d8-00508d9f364f}
 category spell-check-engine @mozilla.fi/mozvoikko2;1 mozvoikko2
+skin voikko classic/1.0 skin/

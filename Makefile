@@ -1,7 +1,7 @@
 
 VERSION=$(shell grep -E -o '<em.version>(.*)</em.version>' install.rdf | sed -e 's/<[a-z:/]*>//g')
 
-XPI_FILES=README COPYING ChangeLog install.rdf chrome.manifest components/MozVoikko2.js
+XPI_FILES=README COPYING ChangeLog install.rdf chrome.manifest components/MozVoikko2.js skin/icon.png
 SOURCE_FILES=$(XPI_FILES) Makefile
 
 .PHONY: dist-gzip mozvoikko2 clean all
@@ -24,4 +24,5 @@ clean:
 	rm -f mozvoikko-$(VERSION).tar.gz mozvoikko2.xpi
 	rm -f $(patsubst %,mozvoikko-$(VERSION)/%, $(sort $(SOURCE_FILES)))
 	test ! -d mozvoikko-$(VERSION)/components || rmdir mozvoikko-$(VERSION)/components
+	test ! -d mozvoikko-$(VERSION)/skin || rmdir mozvoikko-$(VERSION)/skin
 	test ! -d mozvoikko-$(VERSION) || rmdir mozvoikko-$(VERSION)

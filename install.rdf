@@ -6,7 +6,7 @@
  <Description about="urn:mozilla:install-manifest">
     <em:id>{b676e3ff-cda7-4e0c-b2b8-74e4bb40a67a}</em:id>
     <em:name>Mozilla-laajennus Voikon käyttöön</em:name>
-    <em:version>2.0.1</em:version>
+    <em:version>2.1</em:version>
     <em:description>Mozilla-laajennus Voikko-oikoluvun käyttöön</em:description>
     <em:localized>
       <Description>
@@ -18,6 +18,7 @@
     <em:creator>Andris.Pavenis &lt;andris.pavenis@iki.fi&gt;</em:creator>
     <em:contributor>Marko Wallin &lt;marko.wallin@iki.fi&gt;</em:contributor>
     <em:contributor>http://voikko.puimula.org - Voikon kehitys</em:contributor>
+    <em:iconURL>chrome://voikko/skin/icon.png</em:iconURL>
 
     <em:unpack>true</em:unpack>
     <em:type>2</em:type>
@@ -35,7 +36,7 @@
 	<Description>
 	    <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 	    <em:minVersion>4.0</em:minVersion>
-	    <em:maxVersion>14.0a1</em:maxVersion>
+	    <em:maxVersion>33.0</em:maxVersion>
 	</Description>
     </em:targetApplication>
 	
@@ -44,7 +45,7 @@
 	<Description>
     	    <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
     	    <em:minVersion>5.0</em:minVersion>
-    	    <em:maxVersion>14.0a1</em:maxVersion>
+    	    <em:maxVersion>33.0</em:maxVersion>
     	</Description>
     </em:targetApplication>
     
@@ -53,7 +54,7 @@
 	<Description>
 	    <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
 	    <em:minVersion>2.2</em:minVersion>
-	    <em:maxVersion>2.11a1</em:maxVersion>
+	    <em:maxVersion>2.30</em:maxVersion>
 	</Description>
     </em:targetApplication>
 
