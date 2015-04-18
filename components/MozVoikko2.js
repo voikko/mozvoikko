@@ -46,6 +46,7 @@ LibVoikko.prototype = {
     fn_voikko_suggest_cstr: null,
     fn_voikko_free_cstr_array: null,
     fn_voikko_set_boolean_option: null,
+    fn_voikkoListSupportedSpellingLanguages: null,
 
     init : function()
     {
@@ -178,6 +179,16 @@ LibVoikko.prototype = {
             ctypes.voidptr_t,
             ctypes.int,
             ctypes.int);
+
+        //
+        // char ** voikkoListSupportedSpellingLanguages(const char * path)
+        //
+        this.fn_voikkoListSupportedSpellingLanguages = this.libvoikko.declare(
+            "voikkoListSupportedSpellingLanguages",
+            this.call_abi,
+            ctypes.char.ptr.array(50).ptr,
+            ctypes.char.ptr);
+
     },
 
     finalize : function()
@@ -211,7 +222,6 @@ function VoikkoHandle(libvoikko)
 VoikkoHandle.prototype = {
     handle: null,
     libvoikko: null,
-    lang_code: null,
 
     open : function(libvoikko, lang_code)
     {
@@ -228,7 +238,7 @@ VoikkoHandle.prototype = {
 
         this.handle = this.libvoikko.fn_voikko_init(
             message_ptr,
-            "fi_FI",
+            lang_code,
             data_loc);
 
         this.libvoikko.fn_voikko_set_boolean_option(this.handle, VOIKKO_OPT_IGNORE_DOT, 1);
@@ -250,16 +260,6 @@ VoikkoHandle.prototype = {
 
 function MozVoikko2()
 {
-    try
-    {
-        this.voikko_handle = new VoikkoHandle;
-        this.voikko_handle.open(libvoikko);
-    }
-    catch (err)
-    {
-        Components.utils.reportError(err);
-        throw err;
-    }
 }
 
 MozVoikko2.prototype = {
@@ -269,20 +269,34 @@ MozVoikko2.prototype = {
 
     data_loc : null,
     voikko_handle : null,
+    supportedDicts : null,
+    currentDict: null,
     mPersonalDictionary : null,
 
     QueryInterface: XPCOMUtils.generateQI([mozISpellCheckingEngine, Components.interfaces.nsISupport]),
 
     get dictionary()
     {
-        return "fi_FI";
+        return this.currentDict;
     },
 
     set dictionary(dict)
     {
-        if (dict != "fi_FI")
+        this.getSupportedDictionariesInternal();
+        if (this.supportedDicts == null || this.supportedDicts.indexOf(dict) == -1)
         {
             throw "mozvoikko2: dictionary '" + dict + "' is not supported by this component (but may be supported by others)";
+        }
+        try
+        {
+            this.voikko_handle = new VoikkoHandle;
+            this.voikko_handle.open(libvoikko, dict);
+            this.currentDict = dict;
+        }
+        catch (err)
+        {
+            Components.utils.reportError(err);
+            throw err;
         }
     },
 
@@ -316,10 +330,28 @@ MozVoikko2.prototype = {
         this.mPersonalDictionary = mPersonalDictionary;
     },
 
+    getSupportedDictionariesInternal : function()
+    {
+        if (this.supportedDicts == null) {
+            var cSpellingLangs = libvoikko.fn_voikkoListSupportedSpellingLanguages(this.data_loc);
+            if (!cSpellingLangs.isNull())
+            {
+                var spellingLangs = [];
+                for (i = 0; i < 200 && !cSpellingLangs.contents[i].isNull(); i++)
+                {
+                    spellingLangs.push(cSpellingLangs.contents[i].readString());
+                }
+                libvoikko.fn_voikko_free_cstr_array(cSpellingLangs);
+                this.supportedDicts = spellingLangs;
+            }
+        }
+    },
+
     getDictionaryList : function(dicts, count)
     {
-        dicts.value = ["fi_FI"];
-        count.value = 1;
+        this.getSupportedDictionariesInternal();
+        dicts.value = this.supportedDicts;
+        count.value = this.supportedDicts.length;
     },
 
     check : function(word)
@@ -332,7 +364,7 @@ MozVoikko2.prototype = {
 
         if (result == 0 && this.mPersonalDictionary)
         {
-            return this.mPersonalDictionary.check(word, "fi_FI");
+            return this.mPersonalDictionary.check(word, this.currentDict);
         }
         else
         {
