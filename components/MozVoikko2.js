@@ -60,7 +60,7 @@ LibVoikko.prototype = {
         //==================================================================
         // Detect shared library name to load
         //==================================================================
-        if (abi == "Linux_x86-gcc3" || abi == "Linux_x86_64-gcc3")
+        if (abi.indexOf("Linux_") == 0)
         {
             lib_name = "libvoikko.so.1";
         }
