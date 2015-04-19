@@ -11,12 +11,13 @@
     <em:localized>
       <Description>
         <em:locale>en-US</em:locale>
-        <em:name>Finnish spellchecker</em:name>
-        <em:description>Finnish open source Voikko-spellchecker for Mozilla and needed libraries.</em:description>
+        <em:name>Spell checker based on Voikko</em:name>
+        <em:description>Open source spell checker Voikko for Mozilla and needed libraries.</em:description>
       </Description>
     </em:localized>
     <em:creator>Andris.Pavenis &lt;andris.pavenis@iki.fi&gt;</em:creator>
     <em:contributor>Marko Wallin &lt;marko.wallin@iki.fi&gt;</em:contributor>
+    <em:contributor>Harri Pitkänen &lt;hatapitk@iki.fi&gt;</em:contributor>
     <em:contributor>http://voikko.puimula.org - Voikon kehitys</em:contributor>
     <em:iconURL>chrome://voikko/skin/icon.png</em:iconURL>
 

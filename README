@@ -1,5 +1,4 @@
-This is test version of mozvoikko2, an extension for Mozilla programs
-for using Finnish Language spell-checker Voikko
+This is Mozvoikko, an extension for Mozilla programs for using Voikko spell checker.
 
 Supported versions are:
 =======================
@@ -23,12 +22,12 @@ Also suomi-malaga data are included. Extension works however with system install
 of these packages (libvoikko and suomi-malaga) if the files are not found inside
 the extension package.
 
-movoikko2 itself is written completely in JavaScript and does not contain
+Version 2 of Mozvoikko is written completely in JavaScript and does not contain
 any binary components.
 
-One can include libvoikko shared libraries and suomi-malaga files into an extension.
-For that one must put these files in the subdirectories of directory voikko as
-shown below:
+One can include libvoikko shared libraries and suomi-malaga (or other dictionaries)
+into an extension. For that one must put these files in the subdirectories of
+directory voikko as shown below:
 
 $ find voikko -type f | sort
 voikko/2/mor-standard/voikko-fi_FI.all_l

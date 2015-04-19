@@ -21,7 +21,7 @@ Components.utils.import("resource://gre/modules/ctypes.jsm");
 
 const mozISpellCheckingEngine = Components.interfaces.mozISpellCheckingEngine;
 const CLASS_ID = Components.ID("89630d4c-c64d-11e0-83d8-00508d9f364f");
-const CLASS_NAME = "Finnish language spell-check";
+const CLASS_NAME = "Spell checker based on Voikko";
 const CONTRACT_ID = "@mozilla.org/mozvoikko2;1";
 
 const VOIKKO_OPT_IGNORE_DOT = 0;
