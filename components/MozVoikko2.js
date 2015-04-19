@@ -99,15 +99,7 @@ LibVoikko.prototype = {
 
         var data_loc = extension_dir.clone();
         data_loc.append("voikko");
-        var data_loc_test = data_loc.clone();
-        data_loc_test.append("2");
-        data_loc_test.append("mor-standard");
-        data_loc_test.append("voikko-fi_FI.pro");
-        if (data_loc_test.exists() && data_loc_test.isFile())
-        {
-            this.data_loc = data_loc.path;
-            aConsoleService.logStringMessage("MozVoikko2: Found suomi-malaga data at " + this.data_loc);
-        }
+        this.data_loc = data_loc.path;
 
         /* Detect used libvoikko version and output a message to Javascript console. */
         var fn_voikkoGetVersion = this.libvoikko.declare(
