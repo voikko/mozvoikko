@@ -241,7 +241,7 @@ VoikkoHandle.prototype = {
 
     finalize : function()
     {
-        if (handle)
+        if (this.handle)
         {
             this.libvoikko.fn_voikko_terminate(this.handle);
             this.handle = null;
@@ -274,6 +274,10 @@ MozVoikko2.prototype = {
 
     set dictionary(dict)
     {
+        if (dict == this.currentDict)
+        {
+            return;
+        }
         this.getSupportedDictionariesInternal();
         if (this.supportedDicts == null || this.supportedDicts.indexOf(dict) == -1)
         {
@@ -281,6 +285,10 @@ MozVoikko2.prototype = {
         }
         try
         {
+            if (this.voikko_handle)
+            {
+                this.voikko_handle.finalize();
+            }
             this.voikko_handle = new VoikkoHandle;
             this.voikko_handle.open(libvoikko, dict);
             this.currentDict = dict;
