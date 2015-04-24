@@ -278,8 +278,8 @@ MozVoikko2.prototype = {
         {
             return;
         }
-        this.getSupportedDictionariesInternal();
-        if (this.supportedDicts == null || this.supportedDicts.indexOf(dict) == -1)
+        var availableDict = this.getSupportedDictionaryCodeInternal(dict);
+        if (availableDict == null)
         {
             throw "mozvoikko2: dictionary '" + dict + "' is not supported by this component (but may be supported by others)";
         }
@@ -290,7 +290,7 @@ MozVoikko2.prototype = {
                 this.voikko_handle.finalize();
             }
             this.voikko_handle = new VoikkoHandle;
-            this.voikko_handle.open(libvoikko, dict);
+            this.voikko_handle.open(libvoikko, availableDict);
             this.currentDict = dict;
         }
         catch (err)
@@ -343,6 +343,27 @@ MozVoikko2.prototype = {
                 }
                 libvoikko.fn_voikko_free_cstr_array(cSpellingLangs);
                 this.supportedDicts = spellingLangs;
+            }
+        }
+    },
+
+    getSupportedDictionaryCodeInternal : function(dict)
+    {
+        this.getSupportedDictionariesInternal();
+        if (this.supportedDicts == null)
+        {
+            return;
+        }
+        if (this.supportedDicts.indexOf(dict) != -1)
+        {
+            return dict;
+        }
+        if (dict.indexOf("_") > -1)
+        {
+            var d = dict.substr(0, dict.indexOf("_"));
+            if (this.supportedDicts.indexOf(d) != -1)
+            {
+                return d;
             }
         }
     },
