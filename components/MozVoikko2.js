@@ -29,12 +29,39 @@ const VOIKKO_OPT_IGNORE_NUMBERS = 1;
 const VOIKKO_OPT_IGNORE_UPPERCASE = 3;
 const VOIKKO_OPT_ACCEPT_MISSING_HYPHENS = 12;
 
+const OPTIONAL_DEPENDENCIES = {
+    "WINNT_x86-msvc" : ["libgcc_s_sjlj-1.dll", "libstdc++-6.dll", "zlib1.dll", "libarchive-13.dll", "libhfstospell-4.dll"]
+};
+
+function tryLoadLibrary(abi, lib_name) {
+    // Try to locate the library inside extension directory and
+    // replace value
+    var extension_dir = __LOCATION__.parent.parent;
+    var library_loc = extension_dir.clone();
+    library_loc.append("voikko");
+    library_loc.append(abi);
+    library_loc.append(lib_name);
+    if (library_loc.exists() && library_loc.isFile())
+    {
+        var handle = ctypes.open(library_loc.path);
+        aConsoleService.logStringMessage("MozVoikko2: loaded bundled library " + library_loc.path);
+        return handle;
+    }
+    else
+    {
+        var handle = ctypes.open(lib_name);
+        aConsoleService.logStringMessage("MozVoikko2: loaded system library " + library_loc.path);
+        return handle;
+    }
+}
+
 function LibVoikko()
 {
 }
 
 LibVoikko.prototype = {
     libvoikko: null,
+    optional_deps: [],
 
     data_loc: "",
 
@@ -78,26 +105,30 @@ LibVoikko.prototype = {
             throw "Unsupported ABI " + abi;
         }
 
-        // Try to locate libvoikko inside extension directory and
-        // replace value
-        var extension_dir = __LOCATION__.parent.parent;
-        var libvoikko_loc = extension_dir.clone();
-        libvoikko_loc.append("voikko");
-        libvoikko_loc.append(abi);
-        libvoikko_loc.append(lib_name);
-        if (libvoikko_loc.exists() && libvoikko_loc.isFile())
-        {
-            this.libvoikko = ctypes.open(libvoikko_loc.path);
-            aConsoleService.logStringMessage("MozVoikko2: loaded " + libvoikko_loc.path);
+        try {
+            this.libvoikko = tryLoadLibrary(abi, lib_name);
         }
-        else
-        {
-            this.libvoikko = ctypes.open(lib_name);
-            aConsoleService.logStringMessage("MozVoikko2: loaded system libvoikko");
-            aConsoleService.logStringMessage("MozVoikko2: libvoikko_loc = " + libvoikko_loc.path);
+        catch (err) {
+            aConsoleService.logStringMessage("MozVoikko2: Failed to load libvoikko (" + lib_name + "), maybe we need optional dependencies");
+            if (abi in OPTIONAL_DEPENDENCIES) {
+                for (var i = 0; i < OPTIONAL_DEPENDENCIES[abi].length; i++) {
+                    var dep = OPTIONAL_DEPENDENCIES[abi][i];
+                    try {
+                        var h = tryLoadLibrary(abi, dep);
+                        this.optional_deps.push(h);
+                    }
+                    catch (e2) {
+                        aConsoleService.logStringMessage("MozVoikko2: Failed to load optional dependency " + dep);
+                    }
+                }
+                this.libvoikko = tryLoadLibrary(abi, lib_name);
+            }
+            else {
+                throw err;
+            }
         }
 
-        var data_loc = extension_dir.clone();
+        var data_loc = __LOCATION__.parent.parent.clone();
         data_loc.append("voikko");
         this.data_loc = data_loc.path;
 
@@ -188,6 +219,9 @@ LibVoikko.prototype = {
         this.fn_voikko_init = null;
         this.fn_voikko_terminate = null;
         this.libvoikko.close();
+        while (this.optional_deps.length > 0) {
+            this.optional_deps.pop().close();
+        }
     }
 };
 
@@ -259,7 +293,6 @@ MozVoikko2.prototype = {
     classID: CLASS_ID,
     contractID: CONTRACT_ID,
 
-    data_loc : null,
     voikko_handle : null,
     supportedDicts : null,
     currentDict: null,
@@ -333,7 +366,11 @@ MozVoikko2.prototype = {
     getSupportedDictionariesInternal : function()
     {
         if (this.supportedDicts == null) {
-            var cSpellingLangs = libvoikko.fn_voikkoListSupportedSpellingLanguages(this.data_loc);
+            var data_loc = null;
+            if (libvoikko.data_loc) {
+                data_loc = libvoikko.data_loc;
+            }
+            var cSpellingLangs = libvoikko.fn_voikkoListSupportedSpellingLanguages(data_loc);
             if (!cSpellingLangs.isNull())
             {
                 var spellingLangs = [];
