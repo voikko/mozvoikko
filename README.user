@@ -15,3 +15,9 @@ of the following locations and restarting Firefox:
   extensions\{b676e3ff-cda7-4e0c-b2b8-74e4bb40a67a}\voikko\3
   Note that if you remove or re-install your Mozvoikko extension these
   additional dictionaries may need to be installed again.
+- On Windows:
+  ZHFST speller dictionaries can be placed under c:\voikko\3
+- On OS X:
+  ZHFST speller dictionaries can be placed under /Library/Spelling/voikko/3
+- On Linux:
+  ZHFST speller dictionaries can be placed under /etc/voikko/3
