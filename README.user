@@ -1,0 +1,9 @@
+This is Mozvoikko, an extension for Mozilla programs for using Voikko spell checker.
+
+Adding new languages
+====================
+
+This extension may include spelling dictionaries for one or more languages. It is not
+possible to install multiple Mozvoikko extensions simultaneously but you can add
+dictionaries into an already installed extension by placing the dictionaries in any
+of the following locations and restarting Firefox:
