@@ -7,3 +7,11 @@ This extension may include spelling dictionaries for one or more languages. It i
 possible to install multiple Mozvoikko extensions simultaneously but you can add
 dictionaries into an already installed extension by placing the dictionaries in any
 of the following locations and restarting Firefox:
+
+- Under the Firefox profile folder:
+  Firefox profile folder can be located by following these instructions:
+  https://support.mozilla.org/en-US/kb/profiles-where-firefox-stores-user-data
+  Additional ZHFST speller dictionaries can be placed in the sub-folder
+  extensions\{b676e3ff-cda7-4e0c-b2b8-74e4bb40a67a}\voikko\3
+  Note that if you remove or re-install your Mozvoikko extension these
+  additional dictionaries may need to be installed again.
