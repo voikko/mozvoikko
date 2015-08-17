@@ -1,8 +1,8 @@
 
 VERSION=$(shell grep -E -o '<em.version>(.*)</em.version>' install.rdf | sed -e 's/<[a-z:/]*>//g')
 
-XPI_FILES=README COPYING ChangeLog install.rdf chrome.manifest components/MozVoikko2.js skin/icon.png
-SOURCE_FILES=$(XPI_FILES) Makefile
+XPI_FILES=README.user COPYING ChangeLog install.rdf chrome.manifest components/MozVoikko2.js skin/icon.png
+SOURCE_FILES=$(XPI_FILES) Makefile README
 
 .PHONY: dist-gzip mozvoikko2 clean all
 
