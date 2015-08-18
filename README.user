@@ -19,5 +19,6 @@ of the following locations and restarting Firefox:
   ZHFST speller dictionaries can be placed under c:\voikko\3
 - On OS X:
   ZHFST speller dictionaries can be placed under /Library/Spelling/voikko/3
+  or similarly named folder under user's home folder.
 - On Linux:
   ZHFST speller dictionaries can be placed under /etc/voikko/3
