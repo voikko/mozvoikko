@@ -31,6 +31,7 @@ const VOIKKO_OPT_ACCEPT_MISSING_HYPHENS = 12;
 
 const OPTIONAL_DEPENDENCIES = {
     "WINNT_x86-msvc" : ["libgcc_s_sjlj-1.dll", "libstdc++-6.dll", "zlib1.dll", "libarchive-13.dll", "libhfstospell-4.dll"],
+    "WINNT_x86_64-msvc" : ["libgcc_s_seh-1.dll", "libstdc++-6.dll", "zlib1.dll", "libarchive-13.dll", "libhfstospell-4.dll"],
     "Darwin_x86_64-gcc3" : ["libtinyxml2.3.dylib", "libarchive.13.dylib", "libhfstospell.4.dylib"],
     "Darwin_x86-gcc3" : ["libtinyxml2.3.dylib", "libarchive.13.dylib", "libhfstospell.4.dylib"]
 };
