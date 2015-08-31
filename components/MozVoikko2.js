@@ -269,6 +269,10 @@ VoikkoHandle.prototype = {
             message_ptr,
             lang_code,
             data_loc);
+        if (this.handle.isNull()) {
+            this.handle = null;
+            throw "Could not load dictionary that should exists: " + lang_code;
+        }
 
         this.libvoikko.fn_voikko_set_boolean_option(this.handle, VOIKKO_OPT_IGNORE_DOT, 1);
         this.libvoikko.fn_voikko_set_boolean_option(this.handle, VOIKKO_OPT_IGNORE_NUMBERS, 1);
