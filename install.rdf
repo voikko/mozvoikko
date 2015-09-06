@@ -6,7 +6,7 @@
  <Description about="urn:mozilla:install-manifest">
     <em:id>{b676e3ff-cda7-4e0c-b2b8-74e4bb40a67a}</em:id>
     <em:name>Mozilla-laajennus Voikon käyttöön</em:name>
-    <em:version>2.1</em:version>
+    <em:version>2.2</em:version>
     <em:description>Mozilla-laajennus Voikko-oikoluvun käyttöön</em:description>
     <em:localized>
       <Description>
