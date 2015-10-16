@@ -404,7 +404,18 @@ MozVoikko2.prototype = {
         }
         if (dict.indexOf("_") > -1)
         {
+            // Legacy region codes can be safely stripped.
             var d = dict.substr(0, dict.indexOf("_"));
+            if (this.supportedDicts.indexOf(d) != -1)
+            {
+                return d;
+            }
+        }
+        if (/^[a-z]+-[A-Z]{2}$/.test(dict))
+        {
+            // As a workaround for outdated spelling support in Thunderbird we
+            // try to remove two letter BCP 47 region subtag as well.
+            var d = dict.substr(0, dict.indexOf("-"));
             if (this.supportedDicts.indexOf(d) != -1)
             {
                 return d;
