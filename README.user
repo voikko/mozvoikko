@@ -22,3 +22,23 @@ of the following locations and restarting Firefox:
   or similarly named folder under user's home folder.
 - On Linux:
   ZHFST speller dictionaries can be placed under /etc/voikko/3
+
+
+Note about using this extension in Thunderbird
+==============================================
+
+Thunderbird does not properly support the new Mozilla spellchecker API (see bug
+https://bugzilla.mozilla.org/show_bug.cgi?id=500606). Due to this issue
+the inline spell checker may not be available for the languages supported by
+this extension. Patches to Thunderbird to implement this feature are very
+welcome. Until then there are two known workarounds for this issue:
+
+- The safe option:
+  Use the "Check spelling" dialog instead of inline spell checker for spell checking.
+
+- The dangerous option (MAY BREAK SPELL CHECKING IN OTHER APPLICATIONS):
+  Create a fake Hunspell dictionary for your language in order to enable the inline
+  spell checker. Empty files will be sufficient. For example to do Finnish spell
+  checking on Linux you can run the following command:
+
+   touch /usr/share/myspell/fi_FI.dic ; touch /usr/share/myspell/fi_FI.aff
