@@ -18,7 +18,7 @@ $(patsubst %,mozvoikko-$(VERSION)/%, $(sort $(SOURCE_FILES))): mozvoikko-$(VERSI
 
 mozvoikko2:
 	rm -vf mozvoikko2.xpi
-	zip -9 mozvoikko2.xpi $(XPI_FILES) $(shell find voikko -type f '!' -name '.*' '!' -path 'voikko*/.*')
+	TZ=UTC zip -9 mozvoikko2.xpi $(XPI_FILES) $(shell find voikko -type f '!' -name '.*' '!' -path 'voikko*/.*')
 
 clean:
 	rm -f mozvoikko-$(VERSION).tar.gz mozvoikko2.xpi
