@@ -3,8 +3,8 @@ This is Mozvoikko, an extension for Mozilla programs for using Voikko spell chec
 Supported versions are:
 =======================
 
--  Mozilla Firefox 4.0 or above
--  Mozilla Thunderbird 5.0 or above
+-  Mozilla Firefox 4.0 - 56
+-  Mozilla Thunderbird 5.0 - 52.9.1
 -  Mozilla SeaMonkey 2.2 or above
 
 Supported targets:
